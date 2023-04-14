@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Rear Diffuser",
+    "description": "Enhance the curb appeal to the back end of your Audi today with the Audi 8V RS3 Carbon Fiber Rear Diffuser. This carbon fiber RS3 diffuser replaces the existing plastic on the lower portion of your rear bumper for a massively improved appearance.",
+    "price": "450.99",
+    "img": "https://www.rwcarbon.com/media/uploads_ckeditor/rw-carbon-bmw-f90-m5-rws-carbon-fiber-diffuser-12.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Rearlight Set",
+    "description": "DIEDERICHS 1219195 Combination Rearlight Set for BMW 3 Saloon (G20)",
+    "price": "666.99",
+    "img": "https://cdn.autodoc.de/thumb?id=18761695&m=0&n=0&lng=en&ccf=94077838"
+  },
+  {
+    "id": 3,
+    "name": "Car Battery",
+    "description": "The Bosch AGM Battery range is maintance free for the life of the battery. It is 100% leak proof meaning it can be stored in various positions, and is extremly vibration proof. ",
+    "price": "250.00",
+    "img": "https://images.lteplatform.com/images/products/600x600/444778008.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Air Filter",
+    "description": "It's important to check the condition of your cars air filter at regular intervals; we recommend that your air filter is changed every time your car has an annual or 12,000 mile service.",
+    "price": "49.99",
+    "img": "https://images.lteplatform.com/images/catalogimages/products/en1thumb_noimage.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Oil Filter",
+    "description": "Engine oil serves three main purposes, most people probably already know oil lubricates the engine's internal components such as the bearings, crankshaft, camshafts and lifters.",
+    "price": "20.00",
+    "img": "https://images.lteplatform.com/images/products/600x600/501110104.jpg?v=27.2"
+  }
+]
