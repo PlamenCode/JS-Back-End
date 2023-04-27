@@ -1,37 +1,89 @@
-body{
-    background-color: #F7CAC9 ;
+body {
+  background-color: #f7cac9;
 }
 
-header{
-    background-color: #b56a6a;
-    text-align: center;
-    padding: 20px;
+header {
+  background-color: #b56a6a;
+  text-align: center;
+  padding: 20px;
 }
 
 .nav_links a {
-    display: inline-block;
-    width: 20%;
-    padding-left: 3%;
-    padding-right: 10%;
-    cursor: pointer;
-    border-left: 1px solid white;
-    margin-right: 30px;
-    text-transform: uppercase;
-    list-style-type: none;
+  display: inline-block;
+  width: 20%;
+  padding-left: 3%;
+  padding-right: 10%;
+  cursor: pointer;
+  border-left: 1px solid white;
+  margin-right: 30px;
+  text-transform: uppercase;
+  list-style-type: none;
 }
-  
+
 li {
-    min-width: 80px;
-    display: inline-block;
-    color: rgb(70, 170, 4);
+  min-width: 80px;
+  display: inline-block;
+  color: rgb(0, 0, 0);
 }
 
-a{
-    color: rgb(134, 8, 212);
-    text-decoration: none;
-    font-family: sans-serif;
+a {
+  color: rgb(134, 8, 212);
+  text-decoration: none;
+  font-family: sans-serif;
 }
 
-main{
-    text-align: center;
+main {
+  text-align: center;
 }
+
+#card {
+  background-color: rgb(184, 85, 140);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px rgb(65, 65, 65);
+}
+
+img {
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 20px;
+}
+form
+{
+  display: table-caption;
+}
+
+#createSub{
+  text-align: center;
+  display: initial;
+}
+#formSearch{
+  display: inline-block;
+}
+#formSearch input{
+  border-radius: 30px;
+  box-shadow: 10px 10px 15px 5px rgb(40, 40, 40);
+  margin: 5px;
+}
+#facilityList li{
+  display: block;
+  margin: 5px;
+  text-align: left;
+}
+#iconImg{
+  width: 20px;
+  height: 30px;
+}
+#FacilityForm{
+  display: block;
+  width: 400px;
+}
+#imgRoom{
+  display: flex;
+}
+
+.errorBox{
+  border: 2px solid red;
+}
+

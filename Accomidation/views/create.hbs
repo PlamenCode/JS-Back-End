@@ -1,1 +1,15 @@
 <h1>Create Page</h1>
+<section id="createSub">
+    <form action="/create" method="post">
+    {{#if error}}
+        <div><p>{{error.message}}</p></div>
+    {{/if}}
+        <label><span>Name</span><input {{#if error.fields.name}}class="errorBox" {{/if}}  type="text" name="name"></label>
+        <label><span>City</span><input {{#if error.fields.city}}class="errorBox" {{/if}}  type="text" name="city"></label>
+        <label><span>Beds</span><input {{#if error.fields.beds}}class="errorBox" {{/if}}  type="number" name="beds"></label>
+        <label><span>Price</span><input {{#if error.fields.price}}class="errorBox" {{/if}}  type="number" name="price"></label>
+        <label><span>Img URL</span><input {{#if error.fields.imgUrl}}class="errorBox" {{/if}}  type="text" name="imgUrl"></label>
+        <label><span>Description</span><textarea {{#if error.fields.description}}class="errorBox" {{/if}} name="description"></textarea></label>
+        <button>Submit</button>
+    </form>
+</section>

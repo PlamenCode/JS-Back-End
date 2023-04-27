@@ -1,0 +1,21 @@
+
+<h1>Decorate Room Facilities</h1>
+<section id="FacilityDecorate">
+    <h1>{{room.name}}</h1>
+            <p>Facilities:</p>
+    <form id="FacilityForm" action="/facility/{{room._id}}/decorateRoom" method="post">
+            <ul id="facilityList">
+                {{#each facilities}}
+                <li>
+                    <label>
+                        <input type="checkbox" name="{{_id}}">{{#if facilities.checked}} {{/if}}{{label}}<img id="iconImg" src="{{iconUrl}}" >
+                    </label>
+                </li>
+                {{/each}}
+            </ul>
+    <button>Confirm</button > 
+    </form>
+    <div id="imgRoom">
+        <img src="{{room.imgUrl}}">
+    </div>
+</section>

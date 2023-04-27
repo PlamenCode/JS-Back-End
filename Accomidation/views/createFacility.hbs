@@ -1,0 +1,11 @@
+<h1>Create new Facility</h1>
+{{#if error}}
+<p>{{error.message}}</p>
+{{/if}}
+<section id="createFacilitySection">
+    <form action="/facility/create" method="post">
+        <label><span>Label</span><input {{#if error.fields.label}}   class="errorBox"{{/if}} value="{{body.label}}" type="text" name="label"></label>
+        <label><span>Icon URL</span><input {{#if error.fields.iconUrl}} class="errorBox"{{/if}} value="{{body.iconUrl}}" type="text" name="iconUrl"></label>
+        <button>Submit</button>
+    </form>
+</section>

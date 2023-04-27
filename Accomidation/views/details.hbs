@@ -1,1 +1,21 @@
-<h1>Details Page</h1>
+{{#with room}}
+<h1>{{name}} - {{price}}$</h1>
+<section>
+    <p>{{description}}</p>
+    <p>{{city}}</p>
+    <img src="{{imgUrl}}">
+</section>
+<ul id="facilitDisplay">
+     {{#each facilities}}
+       <li>{{label}}  <img id="iconImg" src="{{iconUrl}}"></li>
+    {{/each}}
+</ul>
+<div>
+    {{#if isOwner}}
+    <button><a href="/facility/{{_id}}/decorateRoom">Room Facilities</a></button>
+    <button><a href="/room/{{_id}}/edit">Edit Room</a></button>
+    <button><a href="/room/{{_id}}/delete">Delete Room</a></button>
+    {{/if}}
+
+</div>
+{{/with}}

@@ -1,0 +1,17 @@
+[X] Use of templates
+[X] Use of database
+[X] Use of express plugin libs
+[X] Error Handling
+[X] User Registration and session
+ -  Cookies and Session
+ -  Hashing of password 
+ -  JSON Web Token
+[ ] FULL CRUD ( based on assaignement )
+ -  Login
+ -  Register
+ -  Logout
+ -  Catalog
+ -  Details
+ -  Create
+ -  Edit
+ -  Delete

@@ -1,0 +1,13 @@
+<h1>Register Page</h1>
+<section id="createSub">
+    <form action="/auth/register" method="post">
+    {{#if error}}
+        <div><p>{{error.message}}</p></div>
+    {{/if}}
+        <label><span>Username</span><input {{#if error.fields.username}}class="errorBox" {{/if}} value="{{body.username}}" type="text" name="username"></label>
+        <label><span>Password</span><input {{#if error.fields.password}}class="errorBox" {{/if}}  type="password" name="password"></label>
+        <label><span>Repeat-Pass</span><input {{#if error.fields.repass}}class="errorBox" {{/if}}  type="password" name="repass"></label>
+        <input type="submit" value="Submit"></button>
+    </form>
+    <li>Login from <a href="/auth/login">here</a></li>
+</section>

@@ -1,0 +1,19 @@
+<h1>Delete Page</h1>
+<section id="createSub">
+    <form action="/room/{{room._id}}/delete" method="post">
+    {{#if error}}
+        <div><p>{{error.message}}</p></div>
+    {{/if}}
+    {{#with room}}
+        <label><span>Name</span><input type="text" name="name" value="{{name}}" disabled></label>
+        <label><span>City</span><input type="text" name="city" value="{{city}}" disabled></label>
+        <label><span>Beds</span><input type="number" name="beds" value="{{beds}}" disabled></label>
+        <label><span>Price</span><input type="number" name="price" value="{{price}}" disabled></label>
+        <label><span>Img URL</span><input type="text" name="imgUrl" value="{{imgUrl}}" disabled></label>
+        <label><span>Description</span><textarea name="description" disabled>{{description}}</textarea></label>
+        <input type="submit" value="Confirm Delete">
+    {{/with}}
+
+    </form>
+
+</section>

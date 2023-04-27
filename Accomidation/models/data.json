@@ -3,8 +3,36 @@
         "id": "1",
         "name": "Room",
         "city": "Sofia",
+        "beds": "2",
         "price": "120",
         "description": "very nice and cozy",
-        "imgUrl": "asdsdsad"
+        "imgUrl": "/static/assets/room1.jpg"
+    },
+    {
+        "id": "08405a",
+        "name": "",
+        "city": "",
+        "beds": 0,
+        "price": 0,
+        "description": "",
+        "imgUrl": ""
+    },
+    {
+        "id": "04bebc",
+        "name": "Pesos",
+        "city": "Fuck You",
+        "beds": 2,
+        "price": 230,
+        "description": "very fucking youuu",
+        "imgUrl": "/static/assets/room2.jpg"
+    },
+    {
+        "id": "038dcc",
+        "name": "",
+        "city": "",
+        "beds": 0,
+        "price": 0,
+        "description": "",
+        "imgUrl": ""
     }
 ]

@@ -1,0 +1,12 @@
+<h1>Login Page</h1>
+<section id="createSub">
+    <form action="/auth/login" method="post">
+    {{#if error}}
+        <div><p>{{error.message}}</p></div>
+    {{/if}}
+        <label><span>Username</span><input {{#if error.fields.username}}class="errorBox" {{/if}} type="text" name="username" value="{{body.username}}"></label>
+        <label><span>Password</span><input {{#if error.fields.password}}class="errorBox" {{/if}} type="password" name="password"></label>
+        <input type="submit" value="Submit"></button>
+    </form>
+    <li>Register from <a href="/auth/register">here</a></li>
+</section>
