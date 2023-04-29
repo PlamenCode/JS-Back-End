@@ -1,12 +1,11 @@
-const { getAll } = require('../services/hotelService');
+// TODO replase with contoller from task.
 
 const homeController = require('express').Router();
 
-homeController.get('/', async (req, res) => {
-    const hotels = await getAll();
+homeController.get('/', (req, res) => {
     res.render('home', {
         title: 'Home Page',
-        hotels
+        user: req.user
     });
 });
 

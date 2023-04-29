@@ -1,6 +1,5 @@
 const { register, login } = require('../services/userService');
 const { parseError } = require('../utils/parser');
-const validator = require('validator');
 
 const authController = require('express').Router();
 
@@ -20,27 +19,20 @@ authController.get('/register', (req, res) => {
 
 
 authController.post('/register', async (req, res) => {
-    const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
-    const repass  = req.body.rePass;
+    const repass  = req.body.repass;
     try{
-        if(validator.isEmail(email) == false){
-            throw new Error('Invalid email');
-        }
         if(username == '' || password == ''){
             throw new Error('All fields are required');
-        }
-        if(password.length < 5){
-            throw new Error('Password must be at least 5 charecters long');
-        }
-        if(password != repass){
+        } else if(password != repass){
             throw new Error('Passwords don\'t match');
         }
 
-        const token = await register(email ,username, password);
+        // TODO check to see if register creates session or redirects to login page
+        const token = await register(username, password);
         res.cookie('token', token);
-        res.redirect('/'); 
+        res.redirect('/'); // TODO check where it redirects
 
     } catch(err){
         const errors = parseError(err);
@@ -50,8 +42,7 @@ authController.post('/register', async (req, res) => {
             title: 'Register Page',
             errors,
             body: {
-                email: email,
-                username: username
+                username
             }
         })
     }
@@ -73,16 +64,16 @@ authController.get('/login', (req, res) => {
 
 
 authController.post('/login', async (req, res) => {
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
     try{
-        if(email == '' || password == ''){
+        if(username == '' || password == ''){
             throw new Error('All fields are required');
         };
         
-        const token = await login(email, password);
+        const token = await login(username, password);
         res.cookie('token', token);
-        res.redirect('/'); 
+        res.redirect('/'); // TODO check where it redirects
 
     } catch(err){
         const errors = parseError(err);
@@ -92,7 +83,7 @@ authController.post('/login', async (req, res) => {
             title: 'login Page',
             errors,
             body: {
-                email: email
+                username
             }
         })
     }

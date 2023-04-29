@@ -1,8 +1,11 @@
-<h1>Home Page</h1>
-{{#if user}}
-<p>Logged in as {{user.username}}</p>
-{{/if}}
-
-
-<!-- PLASEHOLDER -->
-<!-- TO BE REPLASED WITH ACTUAL LAYOUT FROM THE GIVEN TASK -->
+<section id="viewCatalog" class="background-img">
+  <div class="added-hotels">
+    {{#if hotels}}
+        {{#each hotels}}
+            {{> hotelCard}}
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="guest">There are no Hotels found...</div> 
+    {{/if}}
+</section>

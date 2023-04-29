@@ -1,11 +1,21 @@
-// TODO replase as task requires
-
 const { Schema, model, Types} = require('mongoose');
 
-// TODO add properties and validation according to the task
+
 const userShema = new Schema({
-    username: { type: String, required: true, unique: true, minlength: [4, 'Username must be at least 4 charecters long.'] }, // unique if allowed due to suerShema.index() below or it will not work correctly
-    hashedPass: { type: String, required: true}
+    email: { type: String, required: true, unique: true },
+    username: { 
+        type: String, 
+        required: true, 
+        unique: true, 
+        match: [/^[a-zA-Z0-9]+$/i, 'Username may contain only en letters and numbers.']}, // unique if allowed due to suerShema.index() below or it will not work correctly
+    hashedPass: { type: String, required: true},
+});
+
+userShema.index({ username: 1 }, {
+    collation: {
+        locale: 'en',
+        strength: 2
+    }
 });
 
 userShema.index({ username: 1 }, {
