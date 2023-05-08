@@ -18,7 +18,6 @@ async function register(username, password){
         hashedPass
     })
 
-    // TODO See if task requires the user to be logged in after registration or to be redirected to login page
     return createSession(user);
 };
 

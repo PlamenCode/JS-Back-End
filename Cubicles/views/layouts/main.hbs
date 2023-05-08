@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cubicle</title>
+  <link href="/static/site.css" type="text/css" rel="stylesheet">
+  <link rel='shortcut icon' type='image/x-icon' href='/images/favicon.png' />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+
+      <ul>
+        <li><img class="logo" src="./images/logo.png"></li>
+        <li><a href="/">Browse</a></li>
+        <li><a href="/about">About</a></li>
+        {{#if user}}
+        <li><a href="/cube/create">Add a Cube</a></li>
+        <li><a href="/accessory/create/accessory">Add Accessory</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        {{else}}
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/register">Register</a></li>
+        {{/if}}
+      </ul>
+    </header>
+  </div>
+
+  {{#if errors}}
+  <div id="notification">
+    {{#each errors}}
+    <p id="notification-message">{{this}}</p>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  {{{body}}}
+
+  <footer>@Cubicle: Exercise for Express.js and Handlebars</footer>
+</body>
+
+</html>
