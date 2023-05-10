@@ -1,3 +1,4 @@
+const { body, validationResult } = require('express-validator');
 const { register, login } = require('../services/userService');
 const { parseError } = require('../utils/parser');
 
@@ -18,19 +19,28 @@ authController.get('/register', (req, res) => {
 });
 
 
-authController.post('/register', async (req, res) => {
+authController.post('/register', 
+body('email').isEmail().withMessage('Invalid email adress'),
+async (req, res) => {
+    const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
     const repass  = req.body.repass;
     try{
+        const result = validationResult(req);
+        if(result.length > 0){
+            throw result;
+        }
+        if(password.length < 3){
+            throw new Error('Password must be at least 3 charecters long')
+        }
         if(username == '' || password == ''){
             throw new Error('All fields are required');
         } else if(password != repass){
             throw new Error('Passwords don\'t match');
         }
 
-        // TODO check to see if register creates session or redirects to login page
-        const token = await register(username, password);
+        const token = await register(email, username, password);
         res.cookie('token', token);
         res.redirect('/'); // TODO check where it redirects
 
@@ -42,7 +52,8 @@ authController.post('/register', async (req, res) => {
             title: 'Register Page',
             errors,
             body: {
-                username
+                username,
+                email
             }
         })
     }
@@ -64,26 +75,25 @@ authController.get('/login', (req, res) => {
 
 
 authController.post('/login', async (req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     try{
-        if(username == '' || password == ''){
+        if(email == '' || password == ''){
             throw new Error('All fields are required');
         };
         
-        const token = await login(username, password);
+        const token = await login(email, password);
         res.cookie('token', token);
         res.redirect('/'); // TODO check where it redirects
 
     } catch(err){
         const errors = parseError(err);
 
-        // TODO add error display to actual template
         res.render('login', {
             title: 'login Page',
             errors,
             body: {
-                username
+                email
             }
         })
     }

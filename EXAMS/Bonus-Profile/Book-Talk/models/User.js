@@ -1,14 +1,13 @@
-// TODO replase as task requires
-
 const { Schema, model, Types} = require('mongoose');
 
 // TODO add properties and validation according to the task
 const userShema = new Schema({
-    username: { type: String, required: true, unique: true, minlength: [4, 'Username must be at least 4 charecters long.'] }, // unique if allowed due to suerShema.index() below or it will not work correctly
+    username: { type: String, required: true, minlength: [4, 'Username must be at least 4 charecters long']}, 
+    email: { type: String, required: true, minlength: [10, 'Email must be at least 10 charecters long']},
     hashedPass: { type: String, required: true}
 });
 
-userShema.index({ username: 1 }, {
+userShema.index({ email: 1 }, {
     collation: {
         locale: 'en',
         strength: 2

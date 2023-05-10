@@ -1,8 +1,14 @@
-<!-- TODO replase with actual template -->
-<h1>Login Page</h1>
+<section class="login-form-container">
     <form action="/auth/login" method="post">
-    <label>Username: <input type="text" name="username" value="{{body.username}}"></label>
-    <label>Password: <input type="password" name="password"></label>
-    <button>Login </button>
-</form>
+        <h3>Login</h3>
 
+        <label>Email</label>
+        <input type="email" name="email" class="box" value="{{body.email}}">
+
+        <label>Password</label>
+        <input type="password" name="password" class="box" >
+
+        <input type="submit" value="Login" class="btn">
+        <p>Don't have an account ? <a href="/auth/register">Create one</a></p>
+    </form>
+</section>

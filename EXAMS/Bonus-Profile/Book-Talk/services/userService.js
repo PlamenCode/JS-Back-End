@@ -5,34 +5,34 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'Secret af';
 
 
-async function register(username, password){
-    const existing = await User.findOne({ username }).collation({ locale: 'en', strength: 2 });
+async function register(email, username, password){
+    const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
     if(existing){
-        throw new Error('Username is taken');
+        throw new Error('email is taken');
     };
 
     const hashedPass = await bcrypt.hash(password, 10);
 
     const user = await User.create({
+        email,
         username,
         hashedPass
     })
 
-    // TODO See if task requires the user to be logged in after registration or to be redirected to login page
     return createSession(user);
 };
 
 
 
-async function login(username, password){
-    const user = await User.findOne({username}).collation({ locale: 'en', strength: 2 });
+async function login(email, password){
+    const user = await User.findOne({email}).collation({ locale: 'en', strength: 2 });
     if(!user){
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     };
 
     const hasMatch = await bcrypt.compare(password, user.hashedPass);
     if(hasMatch == false){
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     };
 
     return createSession(user);
@@ -56,8 +56,14 @@ function verifyToken(token){
 };
 
 
+async function getUserData(userId){
+    return User.findById(userId).lean();
+}
+
+
 module.exports = {
     register,
     login,
-    verifyToken
+    verifyToken,
+    getUserData
 }
