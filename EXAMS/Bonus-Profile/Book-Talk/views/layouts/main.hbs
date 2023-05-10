@@ -31,15 +31,16 @@
                 {{/if}}
             </nav>
         </div>
-
     </header>
+
      {{#if errors}}
         {{#each errors}}
-    <div class="errorContainer">
-        <p>{{this}}</p>
-    </div>
+        <div class="errorContainer">
+            <p>{{this}}</p>
+        </div>
         {{/each}}
     {{/if}}
+
 
     {{{body}}}
 
