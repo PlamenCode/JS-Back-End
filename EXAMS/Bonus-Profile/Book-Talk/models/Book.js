@@ -9,7 +9,6 @@ const bookShema = new Schema({
     stars: { type: Number, required: true, min: [1, 'Min stars 1'], max: [5, 'Max stars 5']},
     wishList: { type: [Types.ObjectId], ref:'User', default: []},
     owner: { type: String, required: true}
-
 });
 
 const Book = model('Book',bookShema);

@@ -1,6 +1,7 @@
-const { body, validationResult} = require('express-validator');
+const { isGuest, hasUser } = require('../middlewares/guards');
 const { register, login } = require('../services/userService');
 const { parseError } = require('../utils/parser');
+const { body, validationResult} = require('express-validator');
 
 const authController = require('express').Router();
 
@@ -12,27 +13,27 @@ const authController = require('express').Router();
 
 
 // TODO replace with actual  views
-authController.get('/register', (req, res) => {
+authController.get('/register', isGuest(), (req, res) => {
     res.render('register', {
-        title: 'Register Page',    
+        title: 'Register Page'
     })
 });
 
 
-authController.post('/register', 
+authController.post('/register',
     body('email').isEmail().withMessage('invalid Email'),
+    body('password').isLength(4).withMessage('Password must be at least 4 charecters long'),
 async (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
     const repass  = req.body.repass;
-
     try{
         const { errors } = validationResult(req);
         if(errors.length > 0){
             throw errors;
         };
-
+        
         if(username == '' || password == '' || email == ''){
             throw new Error('All fields are required');
         } else if(password != repass){
@@ -67,7 +68,7 @@ async (req, res) => {
 //       LOGIN    LOGIN     LOGIN    LOGIN     LOGIN    LOGIN     LOGIN     LOGIN    LOGIN     LOGIN
 
 
-authController.get('/login', (req, res) => {
+authController.get('/login', isGuest(), (req, res) => {
     res.render('login', {
         title: 'Login Page'
     })
@@ -86,7 +87,7 @@ authController.post('/login', async (req, res) => {
         res.cookie('token', token);
         res.redirect('/'); // TODO check where it redirects
 
-    } catch(err){   
+    } catch(err){
         const errors = parseError(err);
 
         // TODO add error display to actual template
@@ -107,7 +108,7 @@ authController.post('/login', async (req, res) => {
 //       LOGOUT    LOGOUT     LOGOUT    LOGOUT     LOGOUT    LOGOUT     LOGOUT     LOGOUT    LOGOUT     LOGOUT
 
 
-authController.get('/logout', (req, res) => {
+authController.get('/logout', hasUser(), (req, res) => {
     res.clearCookie('token');
     res.redirect('/');
 })

@@ -19,7 +19,7 @@ catalogController.get('/details/:id', async (req, res) => {
     const game = await getGameById(req.params.id);
     let isOwner;
     let hasBought;
-    if(game.bougthBy.some(x => x.toString() == req.user._id.toString())){
+    if(req.user && (game.bougthBy.some(x => x.toString() == req.user._id.toString()))){
         hasBought = true;
     }
     if(req.user && (game.owner.toString() == req.user._id.toString())){
