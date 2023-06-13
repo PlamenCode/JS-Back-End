@@ -1,9 +1,42 @@
-<!-- TODO replase with actual template -->
+{{!-- <!-- TODO replase with actual template -->
 <h1>Register Page</h1>
-    <form action="/auth/register" method="post">
+<form action="/auth/register" method="post">
     <label>Username: <input type="text" name="username" value="{{body.username}}"></label>
     <label>Password: <input type="password" name="password"></label>
     <label>Repeat: <input type="password" name="repass"></label>
     <button>Register </button>
-</form>
+</form> --}}
 
+
+<section id="register-section" class="narrow">
+    <h1 class="item">Register</h1>
+    <div class="item padded align-center">
+        <form class="aligned" method="post" action="/auth/register">
+
+            <label>
+                <span>Email</span>
+                <input type="text" name="email" value="{{body.email}}">
+            </label>
+            <label>
+                <span>First name</span>
+                <input type="text" name="firstName"  value="{{body.firstName}}">
+            </label>
+            <label>
+                <span>Last name</span>
+                <input type="text" name="lastName"  value="{{body.lastName}}">
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name="password">
+            </label>
+            <label>
+                <span>Repeat Password</span>
+                <input type="password" name="repass">
+            </label>
+
+            <div class="align-center">
+                <input class="action" type="submit" value="Create Account">
+            </div>
+        </form>
+    </div>
+</section>

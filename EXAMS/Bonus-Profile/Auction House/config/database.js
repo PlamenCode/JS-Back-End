@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // TODO change database name as needed
-const connectionString = 'mongodb://127.0.0.1:27017/ScafoldBase';
+const connectionString = 'mongodb://127.0.0.1:27017/AuctionHouse';
 
 module.exports = async (app) => {
     try{

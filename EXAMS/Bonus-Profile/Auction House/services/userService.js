@@ -5,16 +5,18 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'Secret af';
 
 
-async function register(username, password){
-    const existing = await User.findOne({ username }).collation({ locale: 'en', strength: 2 });
+async function register(email, firstName, lastName, password){
+    const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
     if(existing){
-        throw new Error('Username is taken');
+        throw new Error('Email is taken');
     };
 
     const hashedPass = await bcrypt.hash(password, 10);
 
     const user = await User.create({
-        username,
+        email, 
+        firstName, 
+        lastName,
         hashedPass
     })
 
@@ -24,15 +26,15 @@ async function register(username, password){
 
 
 
-async function login(username, password){
-    const user = await User.findOne({username}).collation({ locale: 'en', strength: 2 });
+async function login(email, password){
+    const user = await User.findOne({email}).collation({ locale: 'en', strength: 2 });
     if(!user){
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     };
 
     const hasMatch = await bcrypt.compare(password, user.hashedPass);
     if(hasMatch == false){
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     };
 
     return createSession(user);
@@ -43,7 +45,9 @@ async function login(username, password){
 function createSession(user){
     const payload = {
         _id: user._id,
-        username: user.username,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName
     };
 
     return jwt.sign(payload, JWT_SECRET);
@@ -55,9 +59,17 @@ function verifyToken(token){
     return jwt.verify(token, JWT_SECRET);
 };
 
+async function getCurrentbidderName(userId){
+    const user = await User.findById(userId);
+    let fName = user.firstName;
+    let lName = user.lastName;
+    return {fName, lName}
+}
+
 
 module.exports = {
     register,
     login,
-    verifyToken
+    verifyToken,
+    getCurrentbidderName
 }
