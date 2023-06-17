@@ -40,7 +40,10 @@ async function deleteTrip(tripId, userId){
 
 async function joinTrip(tripId, userId){
     const trip = await Trip.findById(tripId);
-    trip.buddies.push(userId);
+    if(trip.buddies.length < trip.seats){
+        trip.buddies.push(userId);
+        trip.seats = Number(trip.seats) - 1;
+    };
     return trip.save();
 };
 
@@ -52,6 +55,7 @@ async function getAllTripBuddiestEmails(tripId){
         const email = await getUserEmail(buddieId);
         tripBuddiestEmails.push(email);
     };
+    console.log(tripBuddiestEmails);
     return tripBuddiestEmails;
 };
 
@@ -62,5 +66,5 @@ module.exports = {
     editTrip,
     deleteTrip,
     joinTrip,
-    getAllTripBuddiestEmails
+    getAllTripBuddiestEmails,
 }

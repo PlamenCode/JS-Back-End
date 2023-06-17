@@ -52,12 +52,16 @@ function verifyToken(token){
 
 async function getUserEmail(userId){
     const user = await User.findById(userId).lean();
-    return user.email;
+    return user?.email;
 };
 
 async function getDriver(userId){
     const user = await User.findById(userId).lean();
     return user.email;
+};
+
+async function getProfile(userId){
+    return await User.findById(userId).lean();
 };
 
 
@@ -66,5 +70,6 @@ module.exports = {
     login,
     verifyToken,
     getUserEmail,
-    getDriver
+    getDriver,
+    getProfile,
 }

@@ -1,4 +1,4 @@
-const { createTrip, getOneById, editTrip, deleteTrip, joinTrip, getAllTripBuddiestEmails } = require('../services/tripService');
+const { createTrip, getOneById, editTrip, deleteTrip, joinTrip, getAllTripBuddiestEmails, updateSeats } = require('../services/tripService');
 const { getDriver } = require('../services/userService');
 const { parseError } = require('../utils/parser');
 
@@ -58,11 +58,11 @@ tripController.get('/:id/details', async(req, res) => {
     let isBuddie = false;
     if( req.user && (trip.buddies.map(x => x.toString()).includes(req.user._id.toString()))){ isBuddie = true };
     let hasSeats = false;
-    console.log('buddies', trip.buddies.length);
-    console.log('seats', trip.seats);
-    if(trip.buddies.length + 1 < trip.seats){ hasSeats = true };
+    if(trip.buddies.length < trip.seats){ hasSeats = true };
     const emails = (await getAllTripBuddiestEmails(req.params.id)).join(', ');
     const driver = await getDriver(trip.creator.toString());
+    let seatsLeft = trip.seats;
+    console.log(seatsLeft);
     
     res.render('trip-details', {
         title: 'trip Details',
@@ -137,13 +137,14 @@ tripController.get('/:id/delete', async (req, res) => {
 tripController.get('/:id/join', async (req, res) => {
     const trip = await getOneById(req.params.id);
 
-    if(trip.buddies.length +1 >= trip.seats){
+    console.log(trip.buddies.length, trip.seats);
+    if(trip.buddies.length >= trip.seats){
         // throw new Error('No more spaces');
-        return;
+        return res.redirect(`/trip/${req.params.id}/details`);
     };
     if(trip.buddies.map(x => x.toString()).includes(req.user._id.toString())){
         // throw new Error('You are already on this trip');
-        return;
+        return res.redirect(`/trip/${req.params.id}/details`);
     };
     await joinTrip(req.params.id, req.user._id);
     res.redirect(`/trip/${req.params.id}/details`);
